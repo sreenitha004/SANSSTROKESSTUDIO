@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Stroke Studios | Luxury Makeup Artistry</title>
+    <link rel="icon" type="image/x-icon" href="Screenshot 2025-08-17 at 4.39.27 PM.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -28,6 +29,8 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--white);
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
         }
 
         h1, h2, h3, h4 {
@@ -60,7 +63,7 @@
             color: var(--white);
             border: none;
             border-radius: 30px;
-            cursor: pointer;
+            cursor: none;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -170,7 +173,7 @@
         .mobile-menu-btn {
             display: none;
             font-size: 24px;
-            cursor: pointer;
+            cursor: none;
         }
 
         /* Hero Section */
@@ -494,7 +497,7 @@
         .faq-question {
             padding: 15px 20px;
             background-color: var(--light-color);
-            cursor: pointer;
+            cursor: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -654,10 +657,83 @@
                 margin-bottom: 30px;
             }
         }
+
+        /* Custom Cursor Styles */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: width 0.5s, height 0.5s, border 0.5s;
+        }
+
+        .cursor.hover, .cursor-follower.hover {
+            width: 15px;
+            height: 15px;
+            background-color: rgba(220, 180, 180, 0.8);
+        }
+
+        .cursor.click {
+            width: 18px;
+            height: 18px;
+            background-color: rgba(220, 180, 180, 0.9);
+        }
+
+        .cursor-follower.click {
+            width: 35px;
+            height: 35px;
+            border: 2px solid rgba(220, 180, 180, 0.8);
+        }
+
+        /* Particle styles */
+        .particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            animation: fade-out 1s forwards;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(
+                    calc(-50% + var(--tx) * 1px), 
+                    calc(-50% + var(--ty) * 1px)
+                ) scale(0);
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Custom cursor elements -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
@@ -964,7 +1040,7 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href-#about">About</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#why-choose-us">Why Choose Us</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
@@ -1059,6 +1135,130 @@
                     });
                 }
             });
+        });
+
+        // Custom Cursor with Particles
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        // Colors for particles (makeup-themed)
+        const particleColors = [
+            '#dcb4b4', // primary color
+            '#f9cdcd', // light pink
+            '#d4a5a5', // dusty rose
+            '#ffb7c5', // cherry blossom
+            '#f4acb7', // rose pink
+            '#e8b4bc', // mauve
+            '#ffd1dc', // pastel pink
+            '#f8c8dc', // cotton candy
+        ];
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let posX = 0;
+        let posY = 0;
+        
+        // Update cursor position
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            
+            // Create particles on mouse move
+            if (Math.random() > 0.5) {
+                createParticle(mouseX, mouseY);
+            }
+        });
+        
+        // Animate follower with slight delay
+        function animate() {
+            posX += (mouseX - posX) * 0.1;
+            posY += (mouseY - posY) * 0.1;
+            
+            cursorFollower.style.left = posX + 'px';
+            cursorFollower.style.top = posY + 'px';
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Create colorful particles
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random color from our palette
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.backgroundColor = color;
+            
+            // Random size and position
+            const size = Math.random() * 6 + 4;
+            const tx = (Math.random() - 0.5) * 100;
+            const ty = (Math.random() - 0.5) * 100;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.setProperty('--tx', tx);
+            particle.style.setProperty('--ty', ty);
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation completes
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+        
+        // Hover effects for interactive elements
+        document.querySelectorAll('a, button, .service-card, .faq-question').forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+                
+                // Create more particles on hover
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createParticle(mouseX, mouseY);
+                    }, i * 100);
+                }
+            });
+            
+            elem.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+            });
+        });
+        
+        // Click effects
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('click');
+            cursorFollower.classList.add('click');
+            
+            // Create burst of particles on click
+            for (let i = 0; i < 10; i++) {
+                createParticle(mouseX, mouseY);
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('click');
+            cursorFollower.classList.remove('click');
+        });
+        
+        // Hide cursor when not in window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
         });
     </script>
 </body>
