@@ -348,6 +348,168 @@
             margin-bottom: 15px;
         }
 
+  /* Gallery Section */
+  .gallery {
+    background-color: var(--white);
+    padding: 80px 0;
+  }
+  
+  .gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    gap: 10px;
+  }
+  
+  .gallery-filter {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 30px;
+    cursor: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .gallery-filter:hover,
+  .gallery-filter.active {
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: none;
+  }
+  
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+  }
+  
+  .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+  
+  .gallery-caption {
+    color: var(--white);
+    font-size: 16px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+  }
+  
+  /* Lightbox Modal */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+  }
+  
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 5px;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: var(--white);
+    font-size: 30px;
+    cursor: none;
+  }
+  
+  .lightbox-caption {
+    color: var(--white);
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
+  
+  .lightbox-prev,
+  .lightbox-next {
+    color: var(--white);
+    font-size: 30px;
+    cursor: none;
+    background: rgba(0, 0, 0, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .gallery-filters {
+      margin-bottom: 20px;
+    }
+  }
+
+
         /* Testimonials Section */
         .testimonials {
             background-color: var(--white);
@@ -744,6 +906,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#why-choose-us">Why Choose Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -901,6 +1064,103 @@
             </div>
         </div>
     </section>
+
+    <!-- Gallery section-->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Gallery</h2>
+      <p>Explore our portfolio of stunning makeup transformations</p>
+    </div>
+    
+    <div class="gallery-filters">
+      <button class="gallery-filter active" data-filter="all">All</button>
+      <button class="gallery-filter" data-filter="bridal">Bridal</button>
+      <button class="gallery-filter" data-filter="event">Event</button>
+      <button class="gallery-filter" data-filter="creative">Creative</button>
+    </div>
+    
+    <div class="gallery-grid">
+      <!-- Bridal Makeup Images -->
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Traditional Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Traditional South Indian Bridal Look</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Contemporary Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Contemporary Bridal Glam</div>
+        </div>
+      </div>
+      
+      <!-- Event Makeup Images -->
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Evening Event Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Evening Reception Makeup</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1622296087845-ef5b3c123e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sangeet Night Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Sangeet Night Glam</div>
+        </div>
+      </div>
+      
+      <!-- Creative Makeup Images -->
+      <div class="gallery-item" data-category="creative">
+        <img src="https://images.unsplash.com/photo-1571781926291-9d9f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Editorial Creative Makeup</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="creative">
+        <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Fashion Forward Look</div>
+        </div>
+      </div>
+      
+      <!-- Additional Images -->
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Soft Natural Bridal Look</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Party Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Party Glam Makeup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-nav">
+      <div class="lightbox-prev" id="lightbox-prev">&#10094;</div>
+      <div class="lightbox-next" id="lightbox-next">&#10095;</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -1099,6 +1359,97 @@
                 header.classList.remove('scrolled');
             }
         });
+
+
+// Gallery Filtering
+const galleryFilters = document.querySelectorAll('.gallery-filter');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+galleryFilters.forEach(filter => {
+  filter.addEventListener('click', () => {
+    // Remove active class from all filters
+    galleryFilters.forEach(f => f.classList.remove('active'));
+    
+    // Add active class to clicked filter
+    filter.classList.add('active');
+    
+    const filterValue = filter.getAttribute('data-filter');
+    
+    // Show/hide gallery items based on filter
+    galleryItems.forEach(item => {
+      if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+
+let currentImageIndex = 0;
+let images = [];
+
+// Initialize lightbox with all gallery images
+function initLightbox() {
+  images = Array.from(document.querySelectorAll('.gallery-img'));
+  
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      currentImageIndex = index;
+      updateLightbox();
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    });
+  });
+}
+
+// Update lightbox with current image
+function updateLightbox() {
+  const imgSrc = images[currentImageIndex].getAttribute('src');
+  const caption = images[currentImageIndex].getAttribute('alt');
+  
+  lightboxImg.setAttribute('src', imgSrc);
+  lightboxCaption.textContent = caption;
+}
+
+// Close lightbox
+lightboxClose.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+// Navigate to previous image
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+  updateLightbox();
+});
+
+// Navigate to next image
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  updateLightbox();
+});
+
+// Close lightbox when clicking outside the image
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Initialize lightbox when DOM is loaded
+document.addEventListener('DOMContentLoaded', initLightbox);
 
         // FAQ Accordion
         const faqQuestions = document.querySelectorAll('.faq-question');
