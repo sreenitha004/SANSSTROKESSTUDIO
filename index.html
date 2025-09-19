@@ -30,20 +30,7 @@
             color: var(--text-color);
             background-color: var(--white);
             overflow-x: hidden;
-        }
-
-        /* Show default cursor on touch devices */
-        @media (hover: none) and (pointer: coarse) {
-            body {
-                cursor: auto;
-            }
-        }
-
-        /* Hide custom cursor on touch devices */
-        @media (hover: none) and (pointer: coarse) {
-            .cursor, .cursor-follower {
-                display: none !important;
-            }
+            cursor: none; /* Hide default cursor */
         }
 
         h1, h2, h3, h4 {
@@ -76,7 +63,7 @@
             color: var(--white);
             border: none;
             border-radius: 30px;
-            cursor: pointer;
+            cursor: none;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -127,7 +114,7 @@
             left: 0;
             z-index: 1000;
             background-color: var(--white);
-            box-shadow: 极细 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -186,7 +173,7 @@
         .mobile-menu-btn {
             display: none;
             font-size: 24px;
-            cursor: pointer;
+            cursor: none;
         }
 
         /* Hero Section */
@@ -209,7 +196,7 @@
             font-size: 60px;
             margin-bottom: 20px;
             color: var(--white);
-            line-height: 极细 1.2;
+            line-height: 1.2;
         }
 
         .hero p {
@@ -252,7 +239,7 @@
 
         .about-text h2 {
             font-size: 36px;
-           极细 margin-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .about-text h3 {
@@ -297,11 +284,11 @@
             transition: transform 0.5s ease;
         }
 
-        .service-card:hover极细 .service-img img {
+        .service-card:hover .service-img img {
             transform: scale(1.1);
         }
 
-        .极细service-content {
+        .service-content {
             padding: 20px;
         }
 
@@ -326,14 +313,14 @@
             margin-bottom: 5px;
         }
 
-        /* Why Choose Us Section - FIXED */
+        /* Why Choose Us Section */
         .why-choose-us {
             background-color: var(--light-color);
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
 
@@ -344,10 +331,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 250px; /* Consistent height */
         }
 
         .feature:hover {
@@ -365,173 +348,167 @@
             margin-bottom: 15px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .features {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-            }
-        }
+  /* Gallery Section */
+  .gallery {
+    background-color: var(--white);
+    padding: 80px 0;
+  }
+  
+  .gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    gap: 10px;
+  }
+  
+  .gallery-filter {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 30px;
+    cursor: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .gallery-filter:hover,
+  .gallery-filter.active {
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: none;
+  }
+  
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+  }
+  
+  .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+  
+  .gallery-caption {
+    color: var(--white);
+    font-size: 16px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+  }
+  
+  /* Lightbox Modal */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+  }
+  
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 5px;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: var(--white);
+    font-size: 30px;
+    cursor: none;
+  }
+  
+  .lightbox-caption {
+    color: var(--white);
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
+  
+  .lightbox-prev,
+  .lightbox-next {
+    color: var(--white);
+    font-size: 30px;
+    cursor: none;
+    background: rgba(0, 0, 0, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .gallery-filters {
+      margin-bottom: 20px;
+    }
+  }
 
-        @media (max-width: 576px) {
-            .features {
-                grid-template-columns: 1fr; /* 1 column on small screens */
-            }
-            
-            .feature {
-                min-height: auto; /* Remove fixed height on mobile */
-            }
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background-color: var(--white);
-            padding: 80px 0;
-        }
-        
-        .gallery-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
-        
-        .gallery-filter {
-            padding: 8px 20px;
-            background: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .gallery-filter:hover,
-        .gallery-filter.active {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1极细fr));
-            gap: 20px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 3/4;
-            cursor: pointer;
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-            display: flex;
-            align-items: flex-end;
-            padding: 20极细px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-caption {
-            color: var(--white);
-            font-size: 16px;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
-        /* Lightbox Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-        
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 5px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: var(--white);
-            font-size: 30px;
-            cursor: pointer;
-        }
-        
-        .lightbox-caption {
-            color: var(--white);
-            text-align: center;
-            margin-top: 15px;
-            font-size: 18px;
-极细        }
-        
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 20px;
-        }
-        
-        .lightbox-prev,
-        .lightbox-next {
-            color: var(--white);
-            font-size: 30px;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.3);
-            width: 50px;
-            height: 50极细px;
-            border-radius: 50%;
-            display: flex;
-极细        align-items: center;
-            justify-content: center;
-        }
 
         /* Testimonials Section */
         .testimonials {
@@ -566,7 +543,7 @@
             opacity: 0.5;
         }
 
-        .testimonial-text极细:before {
+        .testimonial-text:before {
             position: absolute;
             top: -15px;
             left: -10px;
@@ -667,7 +644,7 @@
             background-color: var(--white);
         }
 
-        .faq极细-container {
+        .faq-container {
             max-width: 800px;
             margin: 0 auto;
         }
@@ -682,7 +659,7 @@
         .faq-question {
             padding: 15px 20px;
             background-color: var(--light-color);
-            cursor: pointer;
+            cursor: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -730,12 +707,12 @@
             font-size: 18px;
         }
 
-极细        .footer-links {
+        .footer-links {
             list-style: none;
         }
 
         .footer-links li {
-            margin-bottom: 10极细px;
+            margin-bottom: 10px;
         }
 
         .footer-links a {
@@ -777,54 +754,114 @@
             font-size: 14px;
         }
 
-        /* Custom Cursor Styles - Only for non-touch devices */
-        @media (hover: hover) and (pointer: fine) {
-            body {
-                cursor: none;
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
             }
-            
-            .cursor {
+
+            .nav-links {
                 position: fixed;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background-color: var(--primary-color);
-                mix-blend-mode: difference;
-                transform: translate(-50%, -50%);
-                pointer-events: none;
-                z-index: 9999;
-                transition: width 0.3s, height 0.3s, background-color 0.3s;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 30px;
+                transition: left 0.3s ease;
             }
 
-            .cursor-follower {
-                position: fixed;
-                width: 40px;
-                height: 40px;
-                border: 1px solid var(--primary-color);
-                border-radius: 50%;
-                transform: translate(-50%, -50%);
-                pointer-events: none;
-                z-index: 9998;
-                transition: width 极细0.5s, height 0.5s, border 0.5s;
+            .nav-links.active {
+                left: 0;
             }
 
-            .cursor.hover, .cursor-follower.hover {
-                width: 15px;
-                height: 15极细px;
-                background-color: rgba(220, 180, 180, 0.8);
+            .nav-links li {
+                margin: 15px 0;
             }
 
-            .cursor.click {
-                width: 18px;
-                height: 18px;
-                background-color: rgba(220, 180, 180, 0.9);
+            .mobile-menu-btn {
+                display: block;
             }
 
-            .cursor-follower.click {
-                width: 35px;
-                height: 35px;
-                border: 2px solid rgba(220, 180, 180, 0.8);
+            .hero h1 {
+                font-size: 40px;
             }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+
+            .section-title {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Custom Cursor Styles */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: width 0.5s, height 0.5s, border 0.5s;
+        }
+
+        .cursor.hover, .cursor-follower.hover {
+            width: 15px;
+            height: 15px;
+            background-color: rgba(220, 180, 180, 0.8);
+        }
+
+        .cursor.click {
+            width: 18px;
+            height: 18px;
+            background-color: rgba(220, 180, 180, 0.9);
+        }
+
+        .cursor-follower.click {
+            width: 35px;
+            height: 35px;
+            border: 2px solid rgba(220, 180, 180, 0.8);
         }
 
         /* Particle styles */
@@ -851,89 +888,11 @@
                 ) scale(0);
             }
         }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 15px 0;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 30px;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav极细-links li {
-                margin: 15px 0;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .gallery-filters {
-                margin-bottom: 20px;
-            }
-
-            section {
-                padding: 50px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .btn {
-                padding: 10px 20px;
-            }
-
-            .section-title {
-                margin-bottom: 30px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:w极细ght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Custom cursor elements - Will be hidden on touch devices -->
+    <!-- Custom cursor elements -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
@@ -948,7 +907,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#why-choose-us">Why Choose Us</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</极细a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu-btn">
@@ -970,14 +929,14 @@
     </section>
 
     <!-- About Section -->
-    <section class="about" id极细="#about">
+    <section class="about" id="about">
         <div class="container">
-            <div class极细="section-title">
+            <div class="section-title">
                 <h2>About the Founder</h2>
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Santhoshini">
+                    <img src="ceo.png" alt="Santhoshini">
                 </div>
                 <div class="about-text">
                     <h3>Santhoshini – Visionary Artist. Global Learner. Heart-led Creator.</h3>
@@ -1001,7 +960,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib极细=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Brid极细al Makeup">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Makeup">
                     </div>
                     <div class="service-content">
                         <h3>Bridal Makeup</h3>
@@ -1010,7 +969,7 @@
                         <ul>
                             <li>HD / Airbrush Makeup</li>
                             <li>Hair styling and traditional draping</li>
-                            <极细li>Lashes and complete prep</li>
+                            <li>Lashes and complete prep</li>
                             <li>Long-wear setting + bridal touch-up kit</li>
                             <li>Optional trial session</li>
                         </ul>
@@ -1036,8 +995,8 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802极细cfb7e?ixlib=rb-1.2极细.1&auto=format&fit=crop&w=1350&q=80" alt="Bridesmaid Makeup">
-                    </极细div>
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridesmaid Makeup">
+                    </div>
                     <div class="service-content">
                         <h3>Bridesmaid & Family Makeup</h3>
                         <p>Elegant looks for the wedding party, curated to match the bride's theme.</p>
@@ -1053,7 +1012,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Us Section - FIXED LAYOUT -->
+    <!-- Why Choose Us Section -->
     <section class="why-choose-us" id="why-choose-us">
         <div class="container">
             <div class="section-title">
@@ -1069,7 +1028,7 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-star"></极细i>
+                        <i class="fas fa-star"></i>
                     </div>
                     <h3>Premium Product Usage</h3>
                     <p>MAC, Dior, Charlotte Tilbury, Huda Beauty & more</p>
@@ -1106,84 +1065,102 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Gallery</h2>
-                <p>Explore our portfolio of stunning makeup transformations</p>
-            </div>
-            
-            <div class="gallery-filters">
-                <button class="gallery-filter active" data-filter="all">All</button>
-                <button class="gallery-filter" data-filter="bridal">Bridal</button>
-                <button class="gallery-filter" data-filter="event">Event</button>
-                <button class="gallery-filter" data-filter="creative">Creative</button>
-            </div>
-            
-            <div class="gallery-grid">
-                <!-- Bridal Makeup Images -->
-                <div class="gallery-item" data-category="bridal">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Traditional Bridal Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Traditional South Indian Bridal Look</div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-category="bridal">
-                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Contemporary Bridal Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Contemporary Bridal Glam</div>
-                    </div>
-                </div>
-                
-                <!-- Event Makeup Images -->
-                <div class="gallery-item" data极细-category="event">
-                    <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w极细=400&q=80" alt="Evening Event Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Evening Reception Makeup</div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-category="event">
-                    <img src="https://images.unsplash.com/photo-1622296087845-ef5b3c123e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sangeet Night Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Sangeet Night Glam</div>
-                    </div>
-                </div>
-                
-                <!-- Creative Makeup Images -->
-                <div class="gallery-item" data-category="creative">
-                    <img src="https://images.unsplash.com/photo-1571781926291-9d9极细f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Editorial Creative Makeup</div>
-                    </极细div>
-                </div>
-                
-                <div class="gallery极细-item" data-category="creative">
-                    <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Fashion Forward Look</div>
-                    </div>
-                </div>
-                
-                <!-- Additional Images -->
-                <div class="gallery-item" data-category="bridal">
-                    <img src="极细https://images.unsplash.com/photo-1544005313-极细94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Soft Natural Bridal Look</div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-category="event">
-                    <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Party Makeup" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Party Glam Makeup</div>
-                    </div>
-                </div>
-            </div>
+    <!-- Gallery section-->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Gallery</h2>
+      <p>Explore our portfolio of stunning makeup transformations</p>
+    </div>
+    
+    <div class="gallery-filters">
+      <button class="gallery-filter active" data-filter="all">All</button>
+      <button class="gallery-filter" data-filter="bridal">Bridal</button>
+      <button class="gallery-filter" data-filter="event">Event</button>
+      <button class="gallery-filter" data-filter="creative">Creative</button>
+    </div>
+    
+    <div class="gallery-grid">
+      <!-- Bridal Makeup Images -->
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Traditional Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Traditional South Indian Bridal Look</div>
         </div>
-    </section>
+      </div>
+      
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Contemporary Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Contemporary Bridal Glam</div>
+        </div>
+      </div>
+      
+      <!-- Event Makeup Images -->
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Evening Event Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Evening Reception Makeup</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1622296087845-ef5b3c123e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sangeet Night Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Sangeet Night Glam</div>
+        </div>
+      </div>
+      
+      <!-- Creative Makeup Images -->
+      <div class="gallery-item" data-category="creative">
+        <img src="https://images.unsplash.com/photo-1571781926291-9d9f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Editorial Creative Makeup</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="creative">
+        <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Fashion Forward Look</div>
+        </div>
+      </div>
+      
+      <!-- Additional Images -->
+      <div class="gallery-item" data-category="bridal">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Soft Natural Bridal Look</div>
+        </div>
+      </div>
+      
+      <div class="gallery-item" data-category="event">
+        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Party Makeup" class="gallery-img">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Party Glam Makeup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-nav">
+      <div class="lightbox-prev" id="lightbox-prev">&#10094;</div>
+      <div class="lightbox-next" id="lightbox-next">&#10095;</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -1192,7 +1169,7 @@
                 <h2>Client Testimonials</h2>
             </div>
             <div class="testimonial-slider">
-                <div class="极细testimonial">
+                <div class="testimonial">
                     <div class="testimonial-text">
                         Santhoshini brought calm, clarity, and absolute professionalism to my wedding day. The makeup stayed flawless from the morning ceremony to the late-night reception — no touch-ups needed.
                     </div>
@@ -1210,7 +1187,7 @@
             </div>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Secure Your Date</极细h3>
+                    <h3>Secure Your Date</h3>
                     <p>We take limited bookings per month to ensure quality and personal attention.</p>
                     <div class="contact-details">
                         <div class="contact-item">
@@ -1227,13 +1204,13 @@
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></极细i>
+                                <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="contact-text">San Stroke Studios, Coimbatore, Tamil Nadu</div>
                         </div>
                     </div>
                     <h3>Destination & Travel Bookings</h3>
-                    <极细p>San Stroke Studios is available for pan-India and international travel. We offer dedicated team support and pre-event coordination for multi-day bookings.</p>
+                    <p>San Stroke Studios is available for pan-India and international travel. We offer dedicated team support and pre-event coordination for multi-day bookings.</p>
                 </div>
                 <div class="contact-form">
                     <form id="booking-form">
@@ -1277,7 +1254,7 @@
     <!-- FAQ Section -->
     <section class="faq" id="faq">
         <div class="container">
-            <极细div class="section-title">
+            <div class="section-title">
                 <h2>Frequently Asked Questions</h2>
             </div>
             <div class="faq-container">
@@ -1293,13 +1270,13 @@
                     <div class="faq-question">Do you travel for events?</div>
                     <div class="faq-answer">Yes. We are available for outstation and international assignments.</div>
                 </div>
-                <div class="fa极细q-item">
+                <div class="faq-item">
                     <div class="faq-question">Are all products skin-safe?</div>
                     <div class="faq-answer">Only globally certified, high-end products are used.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq极细-question">极细Can packages be customized?</div>
-                    <div class="faq-answer">Yes. All services are tailored to client needs and event type.</极细div>
+                    <div class="faq-question">Can packages be customized?</div>
+                    <div class="faq-answer">Yes. All services are tailored to client needs and event type.</div>
                 </div>
             </div>
         </div>
@@ -1323,10 +1300,9 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href-#about">About</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#why-choose-us">Why Choose Us</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -1355,19 +1331,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox Modal - Correctly placed at the bottom -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <span class="lightbox-close" id="lightbox-close">&times;</span>
-            <img src="" alt="" class="lightbox-img" id="lightbox-img">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-            <div class="lightbox-nav">
-                <div class="lightbox-prev" id="lightbox-prev">&#10094;</div>
-                <div class="lightbox-next" id="lightbox-next">&#10095;</div>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -1376,7 +1339,7 @@
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<极细i class="fas fa-bars"></i>';
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
         // Close mobile menu when clicking a link
@@ -1396,6 +1359,97 @@
                 header.classList.remove('scrolled');
             }
         });
+
+
+// Gallery Filtering
+const galleryFilters = document.querySelectorAll('.gallery-filter');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+galleryFilters.forEach(filter => {
+  filter.addEventListener('click', () => {
+    // Remove active class from all filters
+    galleryFilters.forEach(f => f.classList.remove('active'));
+    
+    // Add active class to clicked filter
+    filter.classList.add('active');
+    
+    const filterValue = filter.getAttribute('data-filter');
+    
+    // Show/hide gallery items based on filter
+    galleryItems.forEach(item => {
+      if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+
+let currentImageIndex = 0;
+let images = [];
+
+// Initialize lightbox with all gallery images
+function initLightbox() {
+  images = Array.from(document.querySelectorAll('.gallery-img'));
+  
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      currentImageIndex = index;
+      updateLightbox();
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    });
+  });
+}
+
+// Update lightbox with current image
+function updateLightbox() {
+  const imgSrc = images[currentImageIndex].getAttribute('src');
+  const caption = images[currentImageIndex].getAttribute('alt');
+  
+  lightboxImg.setAttribute('src', imgSrc);
+  lightboxCaption.textContent = caption;
+}
+
+// Close lightbox
+lightboxClose.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+// Navigate to previous image
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+  updateLightbox();
+});
+
+// Navigate to next image
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  updateLightbox();
+});
+
+// Close lightbox when clicking outside the image
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Initialize lightbox when DOM is loaded
+document.addEventListener('DOMContentLoaded', initLightbox);
 
         // FAQ Accordion
         const faqQuestions = document.querySelectorAll('.faq-question');
@@ -1434,230 +1488,129 @@
             });
         });
 
-        // Gallery Filtering
-        const galleryFilters = document.querySelectorAll('.gallery-filter');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        galleryFilters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                // Remove active class from all filters
-                galleryFilters.forEach(f => f.classList.remove('active'));
-                
-                // Add active class to clicked filter
-                filter.classList.add('active');
-                
-                const filterValue = filter.getAttribute('data-filter');
-                
-                // Show/hide gallery items based on filter
-                galleryItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filter极细Value) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const lightboxClose = document.getElementById('lightbox-close');
-        const lightboxPrev = document.getElementById('lightbox-prev');
-        const lightboxNext = document.getElementById('lightbox-next');
-
-        let currentImageIndex = 0;
-        let images = [];
-
-        // Initialize lightbox with all gallery images
-        function initLightbox() {
-            images = Array.from(document.querySelectorAll('.gallery-img'));
+        // Custom Cursor with Particles
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        // Colors for particles (makeup-themed)
+        const particleColors = [
+            '#dcb4b4', // primary color
+            '#f9cdcd', // light pink
+            '#d4a5a5', // dusty rose
+            '#ffb7c5', // cherry blossom
+            '#f4acb7', // rose pink
+            '#e8b4bc', // mauve
+            '#ffd1dc', // pastel pink
+            '#f8c8dc', // cotton candy
+        ];
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let posX = 0;
+        let posY = 0;
+        
+        // Update cursor position
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
             
-            // Select gallery items properly
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
             
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    currentImageIndex = index;
-                    updateLightbox();
-                    lightbox.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-        }
-
-        // Update lightbox with current image
-        function updateLightbox() {
-            const imgSrc = images[currentImageIndex].getAttribute('src');
-            const caption = images[currentImageIndex].getAttribute('alt');
-            
-            lightboxImg.setAttribute('src', imgSrc);
-            lightboxCaption.textContent = caption;
-        }
-
-        // Close lightbox
-        lightboxClose.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        // Navigate to previous image
-        lightboxPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            updateLightbox();
-        });
-
-        // Navigate to next image
-        lightboxNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            updateLightbox();
-        });
-
-        // Close lightbox when clicking outside the image
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto';
+            // Create particles on mouse move
+            if (Math.random() > 0.5) {
+                createParticle(mouseX, mouseY);
             }
         });
-
-        // Initialize lightbox when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initLightbox);
-
-        // Custom Cursor with Particles - Only for non-touch devices
-        function initCustomCursor() {
-            // Check if device supports hover (not a touch device)
-            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-                const cursor = document.querySelector('.cursor');
-                const cursorFollower = document.querySelector('.cursor-follower');
+        
+        // Animate follower with slight delay
+        function animate() {
+            posX += (mouseX - posX) * 0.1;
+            posY += (mouseY - posY) * 0.1;
+            
+            cursorFollower.style.left = posX + 'px';
+            cursorFollower.style.top = posY + 'px';
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Create colorful particles
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random color from our palette
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.backgroundColor = color;
+            
+            // Random size and position
+            const size = Math.random() * 6 + 4;
+            const tx = (Math.random() - 0.5) * 100;
+            const ty = (Math.random() - 0.5) * 100;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.setProperty('--tx', tx);
+            particle.style.setProperty('--ty', ty);
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation completes
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+        
+        // Hover effects for interactive elements
+        document.querySelectorAll('a, button, .service-card, .faq-question').forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
                 
-                // Colors for particles (makeup-themed)
-                const particleColors = [
-                    '#dcb4b4', // primary color
-                    '#f9cdcd', // light pink
-                    '#d4a5a5', // dusty rose
-                    '#ffb7c5', // cherry blossom
-                    '#f4acb7', // rose pink
-                    '#e8b4bc', // mauve
-                    '#ffd1dc', // pastel pink
-                    '#f8c8dc', // cotton candy
-                ];
-                
-                let mouseX = 0;
-                let mouseY = 0;
-                let posX = 0;
-                let posY = 0;
-                
-                // Update cursor position
-                document.addEventListener('mousemove', function(e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    
-                    cursor.style.left = mouseX + 'px';
-                    cursor.style.top = mouseY + 'px';
-                    
-                    // Create particles on mouse move
-                    if (Math.random() > 0.5) {
-                        createParticle(mouse极细X, mouseY);
-                    }
-                });
-                
-                // Animate follower with slight delay
-                function animate() {
-                    posX += (mouseX - posX) * 0.1;
-                    posY += (mouseY - posY) * 0.1;
-                    
-                    cursorFollower.style.left = posX + 'px';
-                    cursorFollower.style.top = posY + 'px';
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-                
-                // Create colorful particles
-                function createParticle(x, y) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    // Random color from our palette
-                    const color = particleColors[Math.floor(Math.random() * particleColors.length)];
-                    particle.style.backgroundColor = color;
-                    
-                    // Random size and position
-                    const size = Math.random() * 6 + 4;
-                    const tx = (Math.random() - 0.5) * 100;
-                    const ty = (Math.random() - 0.5) * 100;
-                    
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${x}px`;
-                    particle.style.top = `${y极细}px`;
-                    particle.style.setProperty('--tx', tx);
-                    particle.style.setProperty('--ty', ty);
-                    
-                    document.body.appendChild(particle);
-                    
-                    // Remove particle after animation completes
+                // Create more particles on hover
+                for (let i = 0; i < 5; i++) {
                     setTimeout(() => {
-                        particle.remove();
-                    }, 1000);
-                }
-                
-                // Hover effects for interactive elements
-                document.querySelectorAll('a, button, .service-card, .faq-question, .gallery-item, .gallery-filter').forEach(elem => {
-                    elem.addEventListener('mouseenter', ()极细 {
-                        cursor.classList.add('hover');
-                        cursorFollower.classList.add('hover');
-                        
-                        // Create more particles on hover
-                        for (let i = 0; i < 5; i++) {
-                            setTimeout(() => {
-                                createParticle(mouseX, mouseY);
-                            }, i * 100);
-                        }
-                    });
-                    
-                    elem.addEventListener('mouseleave', () => {
-                        cursor.classList.remove('hover');
-                        cursorFollower.classList.remove('hover');
-                    });
-                });
-                
-                // Click effects
-                document.addEventListener('mousedown', () => {
-                    cursor.classList.add('click');
-                    cursorFollower.classList.add('click');
-                    
-                    // Create burst of particles on click
-                    for (let i = 0; i < 10; i++) {
                         createParticle(mouseX, mouseY);
-                    }
-                });
-                
-                document.addEventListener('mouseup', () => {
-                    cursor.classList.remove('click');
-                    cursorFollower.classList.remove('click');
-                });
-                
-                // Hide cursor when not in window
-                document.addEventListener('mouseleave', () => {
-                    cursor.style.opacity = '0';
-                    cursorFollower.style.opacity = '0';
-                });
-                
-                document.addEventListener('mouseenter', () => {
-                    cursor.style.opacity = '1';
-                    cursorFollower.style.opacity = '1';
-                });
+                    }, i * 100);
+                }
+            });
+            
+            elem.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+            });
+        });
+        
+        // Click effects
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('click');
+            cursorFollower.classList.add('click');
+            
+            // Create burst of particles on click
+            for (let i = 0; i < 10; i++) {
+                createParticle(mouseX, mouseY);
             }
-        }
-
-        // Initialize custom cursor only on appropriate devices
-        initCustomCursor();
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('click');
+            cursorFollower.classList.remove('click');
+        });
+        
+        // Hide cursor when not in window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
+        });
     </script>
 </body>
 </html>
