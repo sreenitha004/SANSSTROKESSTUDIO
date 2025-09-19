@@ -30,7 +30,20 @@
             color: var(--text-color);
             background-color: var(--white);
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
+        }
+
+        /* Show default cursor on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+        }
+
+        /* Hide custom cursor on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor, .cursor-follower {
+                display: none !important;
+            }
         }
 
         h1, h2, h3, h4 {
@@ -63,7 +76,7 @@
             color: var(--white);
             border: none;
             border-radius: 30px;
-            cursor: none;
+            cursor: pointer;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -173,7 +186,7 @@
         .mobile-menu-btn {
             display: none;
             font-size: 24px;
-            cursor: none;
+            cursor: pointer;
         }
 
         /* Hero Section */
@@ -348,167 +361,156 @@
             margin-bottom: 15px;
         }
 
-  /* Gallery Section */
-  .gallery {
-    background-color: var(--white);
-    padding: 80px 0;
-  }
-  
-  .gallery-filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-    gap: 10px;
-  }
-  
-  .gallery-filter {
-    padding: 8px 20px;
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 30px;
-    cursor: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .gallery-filter:hover,
-  .gallery-filter.active {
-    background: var(--primary-color);
-    color: var(--white);
-  }
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  
-  .gallery-item {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    cursor: none;
-  }
-  
-  .gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .gallery-item:hover .gallery-img {
-    transform: scale(1.1);
-  }
-  
-  .gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .gallery-item:hover .gallery-overlay {
-    opacity: 1;
-  }
-  
-  .gallery-caption {
-    color: var(--white);
-    font-size: 16px;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-  }
-  
-  .gallery-item:hover .gallery-caption {
-    transform: translateY(0);
-  }
-  
-  /* Lightbox Modal */
-  .lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
-    position: relative;
-  }
-  
-  .lightbox-img {
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 5px;
-  }
-  
-  .lightbox-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: var(--white);
-    font-size: 30px;
-    cursor: none;
-  }
-  
-  .lightbox-caption {
-    color: var(--white);
-    text-align: center;
-    margin-top: 15px;
-    font-size: 18px;
-  }
-  
-  .lightbox-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 20px;
-  }
-  
-  .lightbox-prev,
-  .lightbox-next {
-    color: var(--white);
-    font-size: 30px;
-    cursor: none;
-    background: rgba(0, 0, 0, 0.3);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  @media (max-width: 768px) {
-    .gallery-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-    
-    .gallery-filters {
-      margin-bottom: 20px;
-    }
-  }
-
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .gallery-filter {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .gallery-filter:hover,
+        .gallery-filter.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: var(--white);
+            font-size: 16px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 5px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .lightbox-caption {
+            color: var(--white);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        
+        .lightbox-prev,
+        .lightbox-next {
+            color: var(--white);
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         /* Testimonials Section */
         .testimonials {
@@ -659,7 +661,7 @@
         .faq-question {
             padding: 15px 20px;
             background-color: var(--light-color);
-            cursor: none;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -754,6 +756,81 @@
             font-size: 14px;
         }
 
+        /* Custom Cursor Styles - Only for non-touch devices */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+            
+            .cursor {
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                mix-blend-mode: difference;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+                transition: width 0.3s, height 0.3s, background-color 0.3s;
+            }
+
+            .cursor-follower {
+                position: fixed;
+                width: 40px;
+                height: 40px;
+                border: 1px solid var(--primary-color);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9998;
+                transition: width 0.5s, height 0.5s, border 0.5s;
+            }
+
+            .cursor.hover, .cursor-follower.hover {
+                width: 15px;
+                height: 15px;
+                background-color: rgba(220, 180, 180, 0.8);
+            }
+
+            .cursor.click {
+                width: 18px;
+                height: 18px;
+                background-color: rgba(220, 180, 180, 0.9);
+            }
+
+            .cursor-follower.click {
+                width: 35px;
+                height: 35px;
+                border: 2px solid rgba(220, 180, 180, 0.8);
+            }
+        }
+
+        /* Particle styles */
+        .particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
+            animation: fade-out 1s forwards;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(
+                    calc(-50% + var(--tx) * 1px), 
+                    calc(-50% + var(--ty) * 1px)
+                ) scale(0);
+            }
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
             .header-container {
@@ -800,6 +877,14 @@
             .contact-container {
                 flex-direction: column;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-filters {
+                margin-bottom: 20px;
+            }
 
             section {
                 padding: 50px 0;
@@ -818,81 +903,16 @@
             .section-title {
                 margin-bottom: 30px;
             }
-        }
-
-        /* Custom Cursor Styles */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--primary-color);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9998;
-            transition: width 0.5s, height 0.5s, border 0.5s;
-        }
-
-        .cursor.hover, .cursor-follower.hover {
-            width: 15px;
-            height: 15px;
-            background-color: rgba(220, 180, 180, 0.8);
-        }
-
-        .cursor.click {
-            width: 18px;
-            height: 18px;
-            background-color: rgba(220, 180, 180, 0.9);
-        }
-
-        .cursor-follower.click {
-            width: 35px;
-            height: 35px;
-            border: 2px solid rgba(220, 180, 180, 0.8);
-        }
-
-        /* Particle styles */
-        .particle {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9997;
-            animation: fade-out 1s forwards;
-        }
-
-        @keyframes fade-out {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(
-                    calc(-50% + var(--tx) * 1px), 
-                    calc(-50% + var(--ty) * 1px)
-                ) scale(0);
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Custom cursor elements -->
+    <!-- Custom cursor elements - Will be hidden on touch devices -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
@@ -936,7 +956,7 @@
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="ceo.png" alt="Santhoshini">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Santhoshini">
                 </div>
                 <div class="about-text">
                     <h3>Santhoshini – Visionary Artist. Global Learner. Heart-led Creator.</h3>
@@ -1065,102 +1085,97 @@
         </div>
     </section>
 
-    <!-- Gallery section-->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="section-title">
-      <h2>Our Gallery</h2>
-      <p>Explore our portfolio of stunning makeup transformations</p>
-    </div>
-    
-    <div class="gallery-filters">
-      <button class="gallery-filter active" data-filter="all">All</button>
-      <button class="gallery-filter" data-filter="bridal">Bridal</button>
-      <button class="gallery-filter" data-filter="event">Event</button>
-      <button class="gallery-filter" data-filter="creative">Creative</button>
-    </div>
-    
-    <div class="gallery-grid">
-      <!-- Bridal Makeup Images -->
-      <div class="gallery-item" data-category="bridal">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Traditional Bridal Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Traditional South Indian Bridal Look</div>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Gallery</h2>
+                <p>Explore our portfolio of stunning makeup transformations</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="gallery-filter active" data-filter="all">All</button>
+                <button class="gallery-filter" data-filter="bridal">Bridal</button>
+                <button class="gallery-filter" data-filter="event">Event</button>
+                <button class="gallery-filter" data-filter="creative">Creative</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Bridal Makeup Images -->
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Traditional Bridal Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Traditional South Indian Bridal Look</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Contemporary Bridal Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Contemporary Bridal Glam</div>
+                    </div>
+                </div>
+                
+                <!-- Event Makeup Images -->
+                <div class="gallery-item" data-category="event">
+                    <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Evening Event Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Evening Reception Makeup</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="event">
+                    <img src="https://images.unsplash.com/photo-1622296087845-ef5b3c123e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sangeet Night Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Sangeet Night Glam</div>
+                    </div>
+                </div>
+                
+                <!-- Creative Makeup Images -->
+                <div class="gallery-item" data-category="creative">
+                    <img src="https://images.unsplash.com/photo-1571781926291-9d9f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Editorial Creative Makeup</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="creative">
+                    <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fashion Forward Look</div>
+                    </div>
+                </div>
+                
+                <!-- Additional Images -->
+                <div class="gallery-item" data-category="bridal">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Soft Natural Bridal Look</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="event">
+                    <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Party Makeup" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Party Glam Makeup</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="gallery-item" data-category="bridal">
-        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Contemporary Bridal Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Contemporary Bridal Glam</div>
-        </div>
-      </div>
-      
-      <!-- Event Makeup Images -->
-      <div class="gallery-item" data-category="event">
-        <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Evening Event Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Evening Reception Makeup</div>
-        </div>
-      </div>
-      
-      <div class="gallery-item" data-category="event">
-        <img src="https://images.unsplash.com/photo-1622296087845-ef5b3c123e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sangeet Night Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Sangeet Night Glam</div>
-        </div>
-      </div>
-      
-      <!-- Creative Makeup Images -->
-      <div class="gallery-item" data-category="creative">
-        <img src="https://images.unsplash.com/photo-1571781926291-9d9f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Editorial Creative Makeup</div>
-        </div>
-      </div>
-      
-      <div class="gallery-item" data-category="creative">
-        <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Fashion Forward Look</div>
-        </div>
-      </div>
-      
-      <!-- Additional Images -->
-      <div class="gallery-item" data-category="bridal">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Soft Natural Bridal Look</div>
-        </div>
-      </div>
-      
-      <div class="gallery-item" data-category="event">
-        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Party Makeup" class="gallery-img">
-        <div class="gallery-overlay">
-          <div class="gallery-caption">Party Glam Makeup</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Lightbox Modal -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-content">
-    <span class="lightbox-close" id="lightbox-close">&times;</span>
-    <img src="" alt="" class="lightbox-img" id="lightbox-img">
-    <div class="lightbox-caption" id="lightbox-caption"></div>
-    <div class="lightbox-nav">
-      <div class="lightbox-prev" id="lightbox-prev">&#10094;</div>
-      <div class="lightbox-next" id="lightbox-next">&#10095;</div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <img src="" alt="" class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-prev" id="lightbox-prev">&#10094;</div>
+                <div class="lightbox-next" id="lightbox-next">&#10095;</div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -1300,9 +1315,10 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href-#about">About</a></li>
+                        <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#why-choose-us">Why Choose Us</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -1360,97 +1376,6 @@
             }
         });
 
-
-// Gallery Filtering
-const galleryFilters = document.querySelectorAll('.gallery-filter');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-galleryFilters.forEach(filter => {
-  filter.addEventListener('click', () => {
-    // Remove active class from all filters
-    galleryFilters.forEach(f => f.classList.remove('active'));
-    
-    // Add active class to clicked filter
-    filter.classList.add('active');
-    
-    const filterValue = filter.getAttribute('data-filter');
-    
-    // Show/hide gallery items based on filter
-    galleryItems.forEach(item => {
-      if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-});
-
-// Lightbox functionality
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxCaption = document.getElementById('lightbox-caption');
-const lightboxClose = document.getElementById('lightbox-close');
-const lightboxPrev = document.getElementById('lightbox-prev');
-const lightboxNext = document.getElementById('lightbox-next');
-
-let currentImageIndex = 0;
-let images = [];
-
-// Initialize lightbox with all gallery images
-function initLightbox() {
-  images = Array.from(document.querySelectorAll('.gallery-img'));
-  
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      currentImageIndex = index;
-      updateLightbox();
-      lightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
-    });
-  });
-}
-
-// Update lightbox with current image
-function updateLightbox() {
-  const imgSrc = images[currentImageIndex].getAttribute('src');
-  const caption = images[currentImageIndex].getAttribute('alt');
-  
-  lightboxImg.setAttribute('src', imgSrc);
-  lightboxCaption.textContent = caption;
-}
-
-// Close lightbox
-lightboxClose.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-  document.body.style.overflow = 'auto'; // Re-enable scrolling
-});
-
-// Navigate to previous image
-lightboxPrev.addEventListener('click', (e) => {
-  e.stopPropagation();
-  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-  updateLightbox();
-});
-
-// Navigate to next image
-lightboxNext.addEventListener('click', (e) => {
-  e.stopPropagation();
-  currentImageIndex = (currentImageIndex + 1) % images.length;
-  updateLightbox();
-});
-
-// Close lightbox when clicking outside the image
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-});
-
-// Initialize lightbox when DOM is loaded
-document.addEventListener('DOMContentLoaded', initLightbox);
-
         // FAQ Accordion
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
@@ -1488,129 +1413,227 @@ document.addEventListener('DOMContentLoaded', initLightbox);
             });
         });
 
-        // Custom Cursor with Particles
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        // Colors for particles (makeup-themed)
-        const particleColors = [
-            '#dcb4b4', // primary color
-            '#f9cdcd', // light pink
-            '#d4a5a5', // dusty rose
-            '#ffb7c5', // cherry blossom
-            '#f4acb7', // rose pink
-            '#e8b4bc', // mauve
-            '#ffd1dc', // pastel pink
-            '#f8c8dc', // cotton candy
-        ];
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let posX = 0;
-        let posY = 0;
-        
-        // Update cursor position
-        document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-            
-            // Create particles on mouse move
-            if (Math.random() > 0.5) {
-                createParticle(mouseX, mouseY);
-            }
-        });
-        
-        // Animate follower with slight delay
-        function animate() {
-            posX += (mouseX - posX) * 0.1;
-            posY += (mouseY - posY) * 0.1;
-            
-            cursorFollower.style.left = posX + 'px';
-            cursorFollower.style.top = posY + 'px';
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-        
-        // Create colorful particles
-        function createParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random color from our palette
-            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
-            particle.style.backgroundColor = color;
-            
-            // Random size and position
-            const size = Math.random() * 6 + 4;
-            const tx = (Math.random() - 0.5) * 100;
-            const ty = (Math.random() - 0.5) * 100;
-            
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
-            particle.style.setProperty('--tx', tx);
-            particle.style.setProperty('--ty', ty);
-            
-            document.body.appendChild(particle);
-            
-            // Remove particle after animation completes
-            setTimeout(() => {
-                particle.remove();
-            }, 1000);
-        }
-        
-        // Hover effects for interactive elements
-        document.querySelectorAll('a, button, .service-card, .faq-question').forEach(elem => {
-            elem.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
+        // Gallery Filtering
+        const galleryFilters = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                galleryFilters.forEach(f => f.classList.remove('active'));
                 
-                // Create more particles on hover
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => {
-                        createParticle(mouseX, mouseY);
-                    }, i * 100);
-                }
-            });
-            
-            elem.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
+                // Add active class to clicked filter
+                filter.classList.add('active');
+                
+                const filterValue = filter.getAttribute('data-filter');
+                
+                // Show/hide gallery items based on filter
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
         });
-        
-        // Click effects
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('click');
-            cursorFollower.classList.add('click');
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+
+        let currentImageIndex = 0;
+        let images = [];
+
+        // Initialize lightbox with all gallery images
+        function initLightbox() {
+            images = Array.from(document.querySelectorAll('.gallery-img'));
             
-            // Create burst of particles on click
-            for (let i = 0; i < 10; i++) {
-                createParticle(mouseX, mouseY);
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    updateLightbox();
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+                });
+            });
+        }
+
+        // Update lightbox with current image
+        function updateLightbox() {
+            const imgSrc = images[currentImageIndex].getAttribute('src');
+            const caption = images[currentImageIndex].getAttribute('alt');
+            
+            lightboxImg.setAttribute('src', imgSrc);
+            lightboxCaption.textContent = caption;
+        }
+
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
+
+        // Navigate to previous image
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        });
+
+        // Navigate to next image
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateLightbox();
+        });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('click');
-            cursorFollower.classList.remove('click');
-        });
-        
-        // Hide cursor when not in window
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-            cursorFollower.style.opacity = '1';
-        });
+
+        // Initialize lightbox when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initLightbox);
+
+        // Custom Cursor with Particles - Only for non-touch devices
+        function initCustomCursor() {
+            // Check if device supports hover (not a touch device)
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const cursor = document.querySelector('.cursor');
+                const cursorFollower = document.querySelector('.cursor-follower');
+                
+                // Colors for particles (makeup-themed)
+                const particleColors = [
+                    '#dcb4b4', // primary color
+                    '#f9cdcd', // light pink
+                    '#d4a5a5', // dusty rose
+                    '#ffb7c5', // cherry blossom
+                    '#f4acb7', // rose pink
+                    '#e8b4bc', // mauve
+                    '#ffd1dc', // pastel pink
+                    '#f8c8dc', // cotton candy
+                ];
+                
+                let mouseX = 0;
+                let mouseY = 0;
+                let posX = 0;
+                let posY = 0;
+                
+                // Update cursor position
+                document.addEventListener('mousemove', function(e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    
+                    cursor.style.left = mouseX + 'px';
+                    cursor.style.top = mouseY + 'px';
+                    
+                    // Create particles on mouse move
+                    if (Math.random() > 0.5) {
+                        createParticle(mouseX, mouseY);
+                    }
+                });
+                
+                // Animate follower with slight delay
+                function animate() {
+                    posX += (mouseX - posX) * 0.1;
+                    posY += (mouseY - posY) * 0.1;
+                    
+                    cursorFollower.style.left = posX + 'px';
+                    cursorFollower.style.top = posY + 'px';
+                    
+                    requestAnimationFrame(animate);
+                }
+                
+                animate();
+                
+                // Create colorful particles
+                function createParticle(x, y) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random color from our palette
+                    const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+                    particle.style.backgroundColor = color;
+                    
+                    // Random size and position
+                    const size = Math.random() * 6 + 4;
+                    const tx = (Math.random() - 0.5) * 100;
+                    const ty = (Math.random() - 0.5) * 100;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.setProperty('--tx', tx);
+                    particle.style.setProperty('--ty', ty);
+                    
+                    document.body.appendChild(particle);
+                    
+                    // Remove particle after animation completes
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }
+                
+                // Hover effects for interactive elements
+                document.querySelectorAll('a, button, .service-card, .faq-question, .gallery-item, .gallery-filter').forEach(elem => {
+                    elem.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover');
+                        cursorFollower.classList.add('hover');
+                        
+                        // Create more particles on hover
+                        for (let i = 0; i < 5; i++) {
+                            setTimeout(() => {
+                                createParticle(mouseX, mouseY);
+                            }, i * 100);
+                        }
+                    });
+                    
+                    elem.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover');
+                        cursorFollower.classList.remove('hover');
+                    });
+                });
+                
+                // Click effects
+                document.addEventListener('mousedown', () => {
+                    cursor.classList.add('click');
+                    cursorFollower.classList.add('click');
+                    
+                    // Create burst of particles on click
+                    for (let i = 0; i < 10; i++) {
+                        createParticle(mouseX, mouseY);
+                    }
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    cursor.classList.remove('click');
+                    cursorFollower.classList.remove('click');
+                });
+                
+                // Hide cursor when not in window
+                document.addEventListener('mouseleave', () => {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                });
+                
+                document.addEventListener('mouseenter', () => {
+                    cursor.style.opacity = '1';
+                    cursorFollower.style.opacity = '1';
+                });
+            }
+        }
+
+        // Initialize custom cursor only on appropriate devices
+        initCustomCursor();
     </script>
 </body>
 </html>
