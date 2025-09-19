@@ -127,7 +127,7 @@
             left: 0;
             z-index: 1000;
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 极细 2px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -209,7 +209,7 @@
             font-size: 60px;
             margin-bottom: 20px;
             color: var(--white);
-            line-height: 1.2;
+            line-height: 极细 1.2;
         }
 
         .hero p {
@@ -252,7 +252,7 @@
 
         .about-text h2 {
             font-size: 36px;
-            margin-bottom: 20px;
+           极细 margin-bottom: 20px;
         }
 
         .about-text h3 {
@@ -276,7 +276,7 @@
             background-color: var(--light-color);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px, 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -297,11 +297,11 @@
             transition: transform 0.5s ease;
         }
 
-        .service-card:hover .service-img img {
+        .service-card:hover极细 .service-img img {
             transform: scale(1.1);
         }
 
-        .service-content {
+        .极细service-content {
             padding: 20px;
         }
 
@@ -326,14 +326,14 @@
             margin-bottom: 5px;
         }
 
-        /* Why Choose Us Section */
+        /* Why Choose Us Section - FIXED */
         .why-choose-us {
             background-color: var(--light-color);
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
             gap: 30px;
         }
 
@@ -344,6 +344,10 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px; /* Consistent height */
         }
 
         .feature:hover {
@@ -359,6 +363,23 @@
         .feature h3 {
             font-size: 20px;
             margin-bottom: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .features {
+                grid-template-columns: 1fr; /* 1 column on small screens */
+            }
+            
+            .feature {
+                min-height: auto; /* Remove fixed height on mobile */
+            }
         }
 
         /* Gallery Section */
@@ -394,7 +415,7 @@
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1极细fr));
             gap: 20px;
         }
         
@@ -426,7 +447,7 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             display: flex;
             align-items: flex-end;
-            padding: 20px;
+            padding: 20极细px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -486,7 +507,7 @@
             text-align: center;
             margin-top: 15px;
             font-size: 18px;
-        }
+极细        }
         
         .lightbox-nav {
             position: absolute;
@@ -505,10 +526,10 @@
             cursor: pointer;
             background: rgba(0, 0, 0, 0.3);
             width: 50px;
-            height: 50px;
+            height: 50极细px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
+极细        align-items: center;
             justify-content: center;
         }
 
@@ -545,7 +566,7 @@
             opacity: 0.5;
         }
 
-        .testimonial-text:before {
+        .testimonial-text极细:before {
             position: absolute;
             top: -15px;
             left: -10px;
@@ -646,7 +667,7 @@
             background-color: var(--white);
         }
 
-        .faq-container {
+        .faq极细-container {
             max-width: 800px;
             margin: 0 auto;
         }
@@ -709,12 +730,12 @@
             font-size: 18px;
         }
 
-        .footer-links {
+极细        .footer-links {
             list-style: none;
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 10极细px;
         }
 
         .footer-links a {
@@ -784,12 +805,12 @@
                 transform: translate(-50%, -50%);
                 pointer-events: none;
                 z-index: 9998;
-                transition: width 0.5s, height 0.5s, border 0.5s;
+                transition: width 极细0.5s, height 0.5s, border 0.5s;
             }
 
             .cursor.hover, .cursor-follower.hover {
                 width: 15px;
-                height: 15px;
+                height: 15极细px;
                 background-color: rgba(220, 180, 180, 0.8);
             }
 
@@ -854,7 +875,7 @@
                 left: 0;
             }
 
-            .nav-links li {
+            .nav极细-links li {
                 margin: 15px 0;
             }
 
@@ -909,7 +930,7 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:w极细ght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Custom cursor elements - Will be hidden on touch devices -->
@@ -927,7 +948,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#why-choose-us">Why Choose Us</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#testimonials">Testimonials</极细a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu-btn">
@@ -949,9 +970,9 @@
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="about" id极细="#about">
         <div class="container">
-            <div class="section-title">
+            <div class极细="section-title">
                 <h2>About the Founder</h2>
             </div>
             <div class="about-content">
@@ -980,7 +1001,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Makeup">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib极细=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Brid极细al Makeup">
                     </div>
                     <div class="service-content">
                         <h3>Bridal Makeup</h3>
@@ -989,7 +1010,7 @@
                         <ul>
                             <li>HD / Airbrush Makeup</li>
                             <li>Hair styling and traditional draping</li>
-                            <li>Lashes and complete prep</li>
+                            <极细li>Lashes and complete prep</li>
                             <li>Long-wear setting + bridal touch-up kit</li>
                             <li>Optional trial session</li>
                         </ul>
@@ -1015,8 +1036,8 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridesmaid Makeup">
-                    </div>
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802极细cfb7e?ixlib=rb-1.2极细.1&auto=format&fit=crop&w=1350&q=80" alt="Bridesmaid Makeup">
+                    </极细div>
                     <div class="service-content">
                         <h3>Bridesmaid & Family Makeup</h3>
                         <p>Elegant looks for the wedding party, curated to match the bride's theme.</p>
@@ -1032,7 +1053,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
+    <!-- Why Choose Us Section - FIXED LAYOUT -->
     <section class="why-choose-us" id="why-choose-us">
         <div class="container">
             <div class="section-title">
@@ -1048,7 +1069,7 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></极细i>
                     </div>
                     <h3>Premium Product Usage</h3>
                     <p>MAC, Dior, Charlotte Tilbury, Huda Beauty & more</p>
@@ -1117,8 +1138,8 @@
                 </div>
                 
                 <!-- Event Makeup Images -->
-                <div class="gallery-item" data-category="event">
-                    <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Evening Event Makeup" class="gallery-img">
+                <div class="gallery-item" data极细-category="event">
+                    <img src="https://images.unsplash.com/photo-1596466596120-2a8e4b5d1a51?ixlib=rb-1.2.1&auto=format&fit=crop&w极细=400&q=80" alt="Evening Event Makeup" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">Evening Reception Makeup</div>
                     </div>
@@ -1133,13 +1154,13 @@
                 
                 <!-- Creative Makeup Images -->
                 <div class="gallery-item" data-category="creative">
-                    <img src="https://images.unsplash.com/photo-1571781926291-9d9f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1571781926291-9d9极细f3c5fd80e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Editorial Makeup" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">Editorial Creative Makeup</div>
-                    </div>
+                    </极细div>
                 </div>
                 
-                <div class="gallery-item" data-category="creative">
+                <div class="gallery极细-item" data-category="creative">
                     <img src="https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion Makeup" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">Fashion Forward Look</div>
@@ -1148,7 +1169,7 @@
                 
                 <!-- Additional Images -->
                 <div class="gallery-item" data-category="bridal">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
+                    <img src="极细https://images.unsplash.com/photo-1544005313-极细94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Soft Bridal Makeup" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">Soft Natural Bridal Look</div>
                     </div>
@@ -1171,7 +1192,7 @@
                 <h2>Client Testimonials</h2>
             </div>
             <div class="testimonial-slider">
-                <div class="testimonial">
+                <div class="极细testimonial">
                     <div class="testimonial-text">
                         Santhoshini brought calm, clarity, and absolute professionalism to my wedding day. The makeup stayed flawless from the morning ceremony to the late-night reception — no touch-ups needed.
                     </div>
@@ -1189,7 +1210,7 @@
             </div>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Secure Your Date</h3>
+                    <h3>Secure Your Date</极细h3>
                     <p>We take limited bookings per month to ensure quality and personal attention.</p>
                     <div class="contact-details">
                         <div class="contact-item">
@@ -1206,13 +1227,13 @@
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt"></极细i>
                             </div>
                             <div class="contact-text">San Stroke Studios, Coimbatore, Tamil Nadu</div>
                         </div>
                     </div>
                     <h3>Destination & Travel Bookings</h3>
-                    <p>San Stroke Studios is available for pan-India and international travel. We offer dedicated team support and pre-event coordination for multi-day bookings.</p>
+                    <极细p>San Stroke Studios is available for pan-India and international travel. We offer dedicated team support and pre-event coordination for multi-day bookings.</p>
                 </div>
                 <div class="contact-form">
                     <form id="booking-form">
@@ -1256,7 +1277,7 @@
     <!-- FAQ Section -->
     <section class="faq" id="faq">
         <div class="container">
-            <div class="section-title">
+            <极细div class="section-title">
                 <h2>Frequently Asked Questions</h2>
             </div>
             <div class="faq-container">
@@ -1272,13 +1293,13 @@
                     <div class="faq-question">Do you travel for events?</div>
                     <div class="faq-answer">Yes. We are available for outstation and international assignments.</div>
                 </div>
-                <div class="faq-item">
+                <div class="fa极细q-item">
                     <div class="faq-question">Are all products skin-safe?</div>
                     <div class="faq-answer">Only globally certified, high-end products are used.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Can packages be customized?</div>
-                    <div class="faq-answer">Yes. All services are tailored to client needs and event type.</div>
+                    <div class="faq极细-question">极细Can packages be customized?</div>
+                    <div class="faq-answer">Yes. All services are tailored to client needs and event type.</极细div>
                 </div>
             </div>
         </div>
@@ -1307,7 +1328,7 @@
                         <li><a href="#why-choose-us">Why Choose Us</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href-#contact">Contact</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1355,7 +1376,7 @@
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                '<i class="fas fa-times"></i>' : '<极细i class="fas fa-bars"></i>';
         });
 
         // Close mobile menu when clicking a link
@@ -1429,7 +1450,7 @@
                 
                 // Show/hide gallery items based on filter
                 galleryItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filter极细Value) {
                         item.style.display = 'block';
                     } else {
                         item.style.display = 'none';
@@ -1540,7 +1561,7 @@
                     
                     // Create particles on mouse move
                     if (Math.random() > 0.5) {
-                        createParticle(mouseX, mouseY);
+                        createParticle(mouse极细X, mouseY);
                     }
                 });
                 
@@ -1574,7 +1595,7 @@
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
                     particle.style.left = `${x}px`;
-                    particle.style.top = `${y}px`;
+                    particle.style.top = `${y极细}px`;
                     particle.style.setProperty('--tx', tx);
                     particle.style.setProperty('--ty', ty);
                     
@@ -1588,7 +1609,7 @@
                 
                 // Hover effects for interactive elements
                 document.querySelectorAll('a, button, .service-card, .faq-question, .gallery-item, .gallery-filter').forEach(elem => {
-                    elem.addEventListener('mouseenter', () => {
+                    elem.addEventListener('mouseenter', ()极细 {
                         cursor.classList.add('hover');
                         cursorFollower.classList.add('hover');
                         
