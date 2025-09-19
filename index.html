@@ -1175,7 +1175,6 @@
                 <div class="lightbox-next" id="lightbox-next">&#10095;</div>
             </div>
         </div>
-    </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -1438,59 +1437,77 @@
             });
         });
 
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const lightboxClose = document.getElementById('lightbox-close');
-        const lightboxPrev = document.getElementById('lightbox-prev');
-        const lightboxNext = document.getElementById('lightbox-next');
+       // Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
 
-        let currentImageIndex = 0;
-        let images = [];
+let currentImageIndex = 0;
+let images = [];
 
-        // Initialize lightbox with all gallery images
-        function initLightbox() {
-            images = Array.from(document.querySelectorAll('.gallery-img'));
-            
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    currentImageIndex = index;
-                    updateLightbox();
-                    lightbox.style.display = 'flex';
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
-                });
-            });
-        }
-
-        // Update lightbox with current image
-        function updateLightbox() {
-            const imgSrc = images[currentImageIndex].getAttribute('src');
-            const caption = images[currentImageIndex].getAttribute('alt');
-            
-            lightboxImg.setAttribute('src', imgSrc);
-            lightboxCaption.textContent = caption;
-        }
-
-        // Close lightbox
-        lightboxClose.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        });
-
-        // Navigate to previous image
-        lightboxPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+// Initialize lightbox with all gallery images
+function initLightbox() {
+    // Fix: Use querySelectorAll instead of undefined galleryItems variable
+    images = Array.from(document.querySelectorAll('.gallery-img'));
+    
+    // Fix: Select gallery items properly
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentImageIndex = index;
             updateLightbox();
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
         });
+    });
+}
 
-        // Navigate to next image
-        lightboxNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            updateLightbox();
-        });
+// Update lightbox with current image
+function updateLightbox() {
+    const imgSrc = images[currentImageIndex].getAttribute('src');
+    const caption = images[currentImageIndex].getAttribute('alt');
+    
+    lightboxImg.setAttribute('src', imgSrc);
+    lightboxCaption.textContent = caption;
+}
+
+// Close lightbox
+lightboxClose.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+});
+
+// Navigate to previous image
+lightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateLightbox();
+});
+
+// Navigate to next image
+lightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateLightbox();
+});
+
+// Add this missing function: Close lightbox when clicking outside the image
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// You need to call this function to initialize the lightbox
+// Add this at the end of your script or in DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+    initLightbox();
+});
 
         // Close lightbox when clicking outside the image
         lightbox.addEventListener('click', (e) => {
