@@ -1224,16 +1224,13 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Post-booking support</h3>
-                    <p>Clear timelines, pre-wedding skin prep tips, and guidance</p>
-                </div>
+                        <i class="fas fa-hands-helping
+                                </div>
             </div>
-        </div> 
+        </div>
     </section>
 
-    <!-- Gallery section-->
+    <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="section-title">
@@ -1474,7 +1471,7 @@
                     <ul class="footer-links">
                         <li><a href="#services">Bridal Makeup</a></li>
                         <li><a href="#services">Event Makeup</a></li>
-                        <li><a href="#services">Bridesmaid Makeup</a></li>
+                        <li><a href#services">Bridesmaid Makeup</a></li>
                         <li><a href="#contact">Destination Bookings</a></li>
                     </ul>
                 </div>
@@ -1502,7 +1499,7 @@
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars'></i>';
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
         // Close mobile menu when clicking a link
@@ -1523,7 +1520,7 @@
             }
         });
 
-        // Gallery Filtering
+        // Gallery Filtering - FIXED
         const galleryFilters = document.querySelectorAll('.gallery-filter');
         const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -1548,7 +1545,7 @@
             });
         });
 
-        // Lightbox functionality
+        // Lightbox functionality - FIXED
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -1563,12 +1560,12 @@
         function initLightbox() {
             images = Array.from(document.querySelectorAll('.gallery-img'));
             
-            galleryItems.forEach((item, index) => {
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
                 item.addEventListener('click', () => {
                     currentImageIndex = index;
                     updateLightbox();
                     lightbox.style.display = 'flex';
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+                    document.body.style.overflow = 'hidden';
                 });
             });
         }
@@ -1576,7 +1573,7 @@
         // Update lightbox with current image
         function updateLightbox() {
             const imgSrc = images[currentImageIndex].getAttribute('src');
-            const caption = images[currentImageIndex].getAttribute('alt');
+            const caption = images[currentImageIndex].parentElement.nextElementSibling.querySelector('.gallery-caption').textContent;
             
             lightboxImg.setAttribute('src', imgSrc);
             lightboxCaption.textContent = caption;
@@ -1585,7 +1582,7 @@
         // Close lightbox
         lightboxClose.addEventListener('click', () => {
             lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto';
         });
 
         // Navigate to previous image
@@ -1639,6 +1636,9 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
@@ -1650,7 +1650,7 @@
             });
         });
 
-        // Custom Cursor with Particles
+        // Custom Cursor with Particles - FIXED
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         
@@ -1668,35 +1668,24 @@
         
         let mouseX = 0;
         let mouseY = 0;
-        let posX = 0;
-        let posY = 0;
         
         // Update cursor position
         document.addEventListener('mousemove', function(e) {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            
+            // Animate follower with slight delay
+            setTimeout(() => {
+                cursorFollower.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            }, 100);
             
             // Create particles on mouse move
-            if (Math.random() > 0.5) {
+            if (Math.random() > 0.7) {
                 createParticle(mouseX, mouseY);
             }
         });
-        
-        // Animate follower with slight delay
-        function animate() {
-            posX += (mouseX - posX) * 0.1;
-            posY += (mouseY - posY) * 0.1;
-            
-            cursorFollower.style.left = posX + 'px';
-            cursorFollower.style.top = posY + 'px';
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
         
         // Create colorful particles
         function createParticle(x, y) {
@@ -1728,7 +1717,7 @@
         }
         
         // Hover effects for interactive elements
-        document.querySelectorAll('a, button, .service-card, .faq-question').forEach(elem => {
+        document.querySelectorAll('a, button, .service-card, .faq-question, .gallery-item').forEach(elem => {
             elem.addEventListener('mouseenter', () => {
                 cursor.classList.add('hover');
                 cursorFollower.classList.add('hover');
@@ -1772,6 +1761,28 @@
         document.addEventListener('mouseenter', () => {
             cursor.style.opacity = '1';
             cursorFollower.style.opacity = '1';
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('booking-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            
+            if (!name || !email || !phone || !service) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Here you would typically send the form data to a server
+            alert('Thank you for your inquiry! We will contact you shortly to confirm your appointment.');
+            contactForm.reset();
         });
 
         // Video fallback for mobile devices
